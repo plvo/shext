@@ -1,4 +1,4 @@
-import { add, subtract, multiply } from './utils.js';
+import { add, subtract, multiply } from '../src/utils';
 import { test, expect } from 'vitest';
 
 test('add', () => {
