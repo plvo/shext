@@ -1,4 +1,4 @@
-import { add, subtract } from './utils.js';
+import { add, subtract, multiply } from './utils.js';
 import { test, expect } from 'vitest';
 
 test('add', () => {
@@ -7,4 +7,8 @@ test('add', () => {
 
 test('subtract', () => {
   expect(subtract(2, 1)).toBe(1);
-})
+});
+
+test('multiply', () => {
+  expect(multiply(2, 3)).toBe(6);
+});
