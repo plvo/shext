@@ -1,0 +1,44 @@
+{
+  "name": "next-utils",
+  "version": "0.0.1",
+  "main": "dist/index.ts",
+  "type": "module",
+  "author": "plvo <plvoo@proton.me>",
+  "description": "A collection of utility functions and components to speed up Next.js development",
+  "keywords": [
+    "typescript",
+    "nextjs",
+    "react",
+    "web"
+  ],
+  "files": [
+    "dist"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/plvo/next-utils",
+  "bugs": {
+    "url": "https://github.com/plvo/next-utils/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/plvo/next-utils"
+  },
+  "devDependencies": {
+    "prettier": "^3.4.2",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.7.3",
+    "vitest": "^3.0.2"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "clean": "rimraf dist/",
+    "build": "pnpm run clean && tsc",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "test": "vitest run",
+    "dev": "vitest",
+    "ci": "pnpm run format && pnpm run build && pnpm run check-exports && pnpm run test"
+  }
+}
