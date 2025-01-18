@@ -6,6 +6,9 @@ import type { HTMLAttributes, MouseEventHandler } from 'react';
 import { cn } from '../lib/_utils';
 import { useCustomComponents } from 'src/hooks/_use-components';
 
+type B = React.ForwardRefExoticComponent<ButtonProps & React.RefAttributes<HTMLButtonElement>>;
+
+
 export function ButtonSubmit({
   onClick,
   label,
@@ -20,13 +23,15 @@ export function ButtonSubmit({
   loading?: boolean;
   className?: HTMLAttributes<HTMLButtonElement>['className'];
 } & ButtonProps) {
-  const buttonCustom = useCustomComponents('button');
+  const buttonCustom = useCustomComponents<B>('button');
   const Button = buttonCustom?.main || DefaultButton;
+
+  console.log('buttonCustom', Button.propTypes);
 
   return (
     <Button
-      type="submit"
-      variant={Button.defaultProps?.variant || 'default'}
+    type="submit"
+    // variant={Button.defaultProps!.variant || 'default'}
       onClick={onClick}
       disabled={disabled || loading}
       className={cn('w-full', className)}

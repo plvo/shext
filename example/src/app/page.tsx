@@ -14,15 +14,15 @@ export default function Home() {
           label={'Click me'}
         />
 
-        <DialogConfirmation
-          trigger={<Button variant={"success"}>Open Confirmation Dialog</Button>}
+        {/* <DialogConfirmation
+          trigger={<Button variant={'success'}>Open Confirmation Dialog</Button>}
           title={'Confirmation'}
           description={'Are you sure you want to continue?'}
           labelConfirmButton={'Yes'}
           onConfirm={() => {
             console.log('confirmed');
           }}
-        />
+        /> */}
       </div>
     </main>
   );

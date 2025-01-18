@@ -1,14 +1,20 @@
 type ComponentsKey = 'button' | 'dialog' | 'hover-card';
 
-type SubComponentsMap = {
-  [key: string]: React.ComponentType<any>;
+type SubComponentsMap<T> = {
+  [key: string]: T;
 };
 
-type ComponentAndSubComponents = {
-  main: React.ComponentType<any>;
-  subComponents?: SubComponentsMap;
+type ComponentAndSubComponents<T> = {
+  main: T;
+  subComponents?: SubComponentsMap<T>;
 };
 
-type CustomComponents = {
-  [K in ComponentsKey]?: React.ComponentType<any> | ComponentAndSubComponents;
-};
+type CustomComponents<T> = Partial<Record<ComponentsKey, T | ComponentAndSubComponents<T>>>;
+
+
+export {
+  ComponentsKey,
+  SubComponentsMap,
+  ComponentAndSubComponents,
+  CustomComponents
+}

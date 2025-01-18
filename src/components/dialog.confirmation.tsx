@@ -26,7 +26,7 @@ export function DialogConfirmation({
   const dialogCustom = useCustomComponents('dialog');
   const buttonCustom = useCustomComponents('button');
 
-  const Dialog = dialogCustom.main || DefaultDialog;
+  const Dialog = dialogCustom?.main || DefaultDialog;
   const {
     DialogContent = DefaultDialogContent,
     DialogDescription = DefaultDialogDescription,

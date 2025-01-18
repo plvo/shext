@@ -1,56 +1,19 @@
+"use client";
+
 import { createContext, type ReactNode } from 'react';
-import { Button } from 'src/components/ui/button';
-import {
-  Dialog,
-  DialogClose,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogPortal,
-  DialogTitle,
-  DialogTrigger,
-} from 'src/components/ui/dialog';
-import { HoverCard, HoverCardContent, HoverCardTrigger } from 'src/components/ui/hover-card';
+import type { CustomComponents } from 'src/types/providers';
 
-// export const _ComponentsContext = createContext<CustomComponents>({});
-
-const defaultComponents: Required<CustomComponents> = {
-  button: Button,
-  dialog: {
-    main: Dialog,
-    subComponents: {
-      DialogClose,
-      DialogContent,
-      DialogDescription,
-      DialogFooter,
-      DialogHeader,
-      DialogOverlay,
-      DialogPortal,
-      DialogTitle,
-      DialogTrigger,
-    },
-  },
-  'hover-card': {
-    main: HoverCard,
-    subComponents: {
-      HoverCardContent,
-      HoverCardTrigger,
-    },
-  },
-};
-
-export const _ComponentsContext = createContext<CustomComponents>(defaultComponents);
+export const _ComponentsContext = createContext<CustomComponents>({});
 
 export const UComponentsProvider = ({
   children,
-  components = {},
+  customComponents = {},
 }: {
   children: ReactNode;
-  components?: CustomComponents;
+  customComponents?: CustomComponents;
 }) => {
-  const mergedComponents = { ...defaultComponents, ...components };
-
-  return <_ComponentsContext.Provider value={mergedComponents}>{children}</_ComponentsContext.Provider>;
+  console.log("bonjour");
+  console.log('customComponents', customComponents);
+  return <_ComponentsContext.Provider value={customComponents}>
+    {children}</_ComponentsContext.Provider>;
 };

@@ -1,16 +1,23 @@
-import { useContext } from "react";
-import { _ComponentsContext } from "src/providers/components.provider";
+import { useContext } from 'react';
+import { _ComponentsContext } from 'src/providers/components.provider';
+import type { ComponentAndSubComponents, ComponentsKey } from 'src/types/providers';
 
-export const useCustomComponents = (key: ComponentsKey): ComponentAndSubComponents => {
-    const customComponents = useContext(_ComponentsContext);
-    const component = customComponents[key]!;
+export const useCustomComponents = <T>(key: ComponentsKey): ComponentAndSubComponents<T> | null => {
+  const customComponents = useContext(_ComponentsContext);
+  const component = customComponents[key];
 
-    if (typeof component === 'function') {
-        return { main: component, subComponents: {} };
-    }
+  if (!component) {
+    return null;
+  }
 
-    return {
-        main: component.main,
-        subComponents: component.subComponents || {},
-    };
+  console.log('nique ta mere la pute ', key, component);
+
+  if (typeof component === 'function') {
+    return { main: component, subComponents: {} };
+  }
+
+  return {
+    main: component.main,
+    subComponents: component.subComponents || {},
+  };
 };
