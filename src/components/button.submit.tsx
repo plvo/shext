@@ -1,18 +1,12 @@
 'use client';
 
 import { ReloadIcon } from '@radix-ui/react-icons';
-import { Button, buttonVariants } from '../components/ui/button';
+import { Button as DefaultButton, type ButtonProps } from '../components/ui/button';
 import type { HTMLAttributes, MouseEventHandler } from 'react';
-import type { VariantProps } from 'class-variance-authority';
-import { cn } from '../lib/utils';
+import { cn } from '../lib/_utils';
+import { useCustomComponents } from 'src/hooks/_use-components';
 
-export interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    VariantProps<typeof buttonVariants> {
-  asChild?: boolean;
-}
-
-export default function ButtonSubmit({
+export function ButtonSubmit({
   onClick,
   label,
   disabled,
@@ -26,10 +20,13 @@ export default function ButtonSubmit({
   loading?: boolean;
   className?: HTMLAttributes<HTMLButtonElement>['className'];
 } & ButtonProps) {
+  const buttonCustom = useCustomComponents('button');
+  const Button = buttonCustom?.main || DefaultButton;
+
   return (
     <Button
       type="submit"
-      variant={'default'}
+      variant={Button.defaultProps?.variant || 'default'}
       onClick={onClick}
       disabled={disabled || loading}
       className={cn('w-full', className)}
