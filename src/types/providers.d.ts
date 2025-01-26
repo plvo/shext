@@ -11,10 +11,4 @@ type ComponentAndSubComponents<T> = {
 
 type CustomComponents<T> = Partial<Record<ComponentsKey, T | ComponentAndSubComponents<T>>>;
 
-
-export {
-  ComponentsKey,
-  SubComponentsMap,
-  ComponentAndSubComponents,
-  CustomComponents
-}
+export { ComponentsKey, SubComponentsMap, ComponentAndSubComponents, CustomComponents };
