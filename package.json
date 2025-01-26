@@ -1,16 +1,16 @@
 {
-  "name": "@plvo/next-utils",
-  "version": "0.1.2",
+  "name": "shext",
+  "version": "0.1.0",
   "author": "plvo <plvoo@proton.me>",
   "license": "MIT",
-  "description": "A collection of utility functions and components to speed up Next.js development",
-  "homepage": "https://github.com/plvo/next-utils",
+  "description": "⚡ A collection of utility functions and components to speed up Next.js development",
+  "homepage": "https://github.com/plvo/shext",
   "bugs": {
-    "url": "https://github.com/plvo/next-utils/issues"
+    "url": "https://github.com/plvo/shext/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plvo/next-utils"
+    "url": "git+https://github.com/shext/next-utils"
   },
   "type": "module",
   "main": "./dist/index.js",
@@ -29,9 +29,9 @@
   ],
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.3",
-    "@changesets/cli": "^2.27.11",
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
+    "husky": "^9.1.7",
     "prettier": "^3.4.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
@@ -57,7 +57,7 @@
     "test": "vitest run",
     "dev": "vitest",
     "ci": "pnpm run format && pnpm run build && pnpm run check-exports && pnpm run test",
-    "local-release": "changeset version && changeset publish",
-    "prepublishOnly": "pnpm run ci"
+    "prepublishOnly": "pnpm run ci",
+    "prepare": "husky"
   }
 }
