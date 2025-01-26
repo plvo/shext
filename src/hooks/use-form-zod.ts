@@ -1,7 +1,7 @@
 'use client';
 
 import { z, ZodObject, type ZodRawShape } from 'zod';
-import UseZodShape from './use-zod-shape';
+import UseZodShape from './use-zod-shape.js';
 import { useForm, type DefaultValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 

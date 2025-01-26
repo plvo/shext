@@ -1,3 +1,3 @@
-import { getChangedFields } from './form';
+import { getChangedFields } from './form.js';
 
 export { getChangedFields };

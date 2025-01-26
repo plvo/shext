@@ -1,4 +1,4 @@
-import UseZodShape from './use-zod-shape';
-import useFormZod from './use-form-zod';
+import UseZodShape from './use-zod-shape.js';
+import useFormZod from './use-form-zod.js';
 
 export { UseZodShape, useFormZod };
