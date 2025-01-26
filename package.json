@@ -1,16 +1,16 @@
 {
-  "name": "@plvo/next-utils",
+  "name": "shext",
   "version": "0.1.2",
   "author": "plvo <plvoo@proton.me>",
   "license": "MIT",
   "description": "A collection of utility functions and components to speed up Next.js development",
-  "homepage": "https://github.com/plvo/next-utils",
+  "homepage": "https://github.com/plvo/shext",
   "bugs": {
-    "url": "https://github.com/plvo/next-utils/issues"
+    "url": "https://github.com/plvo/shext/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/plvo/next-utils"
+    "url": "git+https://github.com/shext/next-utils"
   },
   "type": "module",
   "main": "./dist/index.js",

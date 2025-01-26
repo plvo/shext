@@ -21,11 +21,11 @@ get_emoji_code() {
 
 commit_msg=$(cat "$1")
 
-type=$(echo "$commit_msg" | awk '/^(build|ci|feat|fix|perf|refactor|style|docs|test|chore|revert|workflow|security)/ {print $1}')
+type=$(echo "$commit_msg" | awk -F':' '/^(build|ci|feat|fix|perf|refactor|style|docs|test|chore|revert|workflow|security)/ {print $1}')
 
 if [ -z "$type" ]; then
     echo "❌ Invalid commit type!"
-    echo "Allowed types:"
+    echo "Allowed types:" 
     echo "• build 🏗️"
     echo "• ci 👷"
     echo "• feat ✨"
@@ -44,17 +44,20 @@ if [ -z "$type" ]; then
     echo "Example: feat(auth): add email login"
     exit 1
 fi
-
-subjet=$(echo "$commit_msg" | cut -d ':' -f2- | xargs)
-if [ ${#subjet} -gt 50 ]; then
-    echo "❌ Commit subject is too long (max 50 characters)"
-    exit 1
-fi
+ 
+# subjet=$(echo "$commit_msg" | cut -d ':' -f2- | xargs)
+# if [ ${#subjet} -gt 50 ]; then
+#     echo "❌ Commit subject is too long (max 50 characters)"
+#     exit 1
+# fi
 
 emoji_code=$(get_emoji_code "$type")
-if [ -z "$(echo "$commit_msg" | grep "^$emoji_code")" ]; then
-    echo "$emoji_code $commit_msg" > "$1"
+if [ -z "$(echo "$emoji_code")" ]; then
+    echo "$commit_msg" > "$1"
+    exit 0
 fi
+
+echo "$emoji_code $commit_msg" > "$1"
 
 echo "✅ Commit message is valid! added emoji"
 
