@@ -1,4 +1,4 @@
-"use client"
+'use client';
 
 import { z, ZodObject, type ZodRawShape } from 'zod';
 import UseZodShape from './use-zod-shape';
