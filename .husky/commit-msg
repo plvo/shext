@@ -1,0 +1,61 @@
+#!/bin/sh
+
+get_emoji_code() {
+    case "$1" in
+        "build")    echo ":building_construction:" ;;
+        "ci")       echo ":construction_worker:" ;;
+        "feat")     echo ":sparkles:" ;;
+        "fix")      echo ":bug:" ;;
+        "perf")     echo ":zap:" ;;
+        "refactor") echo ":recycle:" ;;
+        "style")    echo ":lipstick:" ;;
+        "docs")     echo ":memo:" ;;
+        "test")     echo ":test_tube:" ;;
+        "chore")    echo ":wrench:" ;;
+        "revert")   echo ":rewind:" ;;
+        "workflow") echo ":clipboard:" ;;
+        "security") echo ":lock:" ;;
+        *)          echo "" ;;
+    esac
+}
+
+commit_msg=$(cat "$1")
+
+type=$(echo "$commit_msg" | awk '/^(build|ci|feat|fix|perf|refactor|style|docs|test|chore|revert|workflow|security)/ {print $1}')
+
+if [ -z "$type" ]; then
+    echo "❌ Invalid commit type!"
+    echo "Allowed types:"
+    echo "• build 🏗️"
+    echo "• ci 👷"
+    echo "• feat ✨"
+    echo "• fix 🐛"
+    echo "• perf ⚡"
+    echo "• refactor ♻️"
+    echo "• style 💄"
+    echo "• docs 📝"
+    echo "• test 🧪"
+    echo "• chore 🔧"
+    echo "• revert ⏪"
+    echo "• workflow 📋"
+    echo "• security 🔒"
+    echo ""
+    echo "Expected format: <type>(<scope>): <subject>"
+    echo "Example: feat(auth): add email login"
+    exit 1
+fi
+
+subjet=$(echo "$commit_msg" | cut -d ':' -f2- | xargs)
+if [ ${#subjet} -gt 50 ]; then
+    echo "❌ Commit subject is too long (max 50 characters)"
+    exit 1
+fi
+
+emoji_code=$(get_emoji_code "$type")
+if [ -z "$(echo "$commit_msg" | grep "^$emoji_code")" ]; then
+    echo "$emoji_code $commit_msg" > "$1"
+fi
+
+echo "✅ Commit message is valid! added emoji"
+
+exit 0
