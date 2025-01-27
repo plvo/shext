@@ -14,6 +14,7 @@ get_emoji_code() {
         "chore")    echo ":wrench:" ;;
         "revert")   echo ":rewind:" ;;
         "workflow") echo ":clipboard:" ;;
+        "wip")      echo ":hourglass:" ;;
         "security") echo ":lock:" ;;
         *)          echo "" ;;
     esac
@@ -21,7 +22,7 @@ get_emoji_code() {
 
 commit_msg=$(cat "$1")
 
-type=$(echo "$commit_msg" | awk '/^(build|ci|feat|fix|perf|refactor|style|docs|test|chore|revert|workflow|security)/ {print $1}' | sed 's/[^a-z]//g')
+type=$(echo "$commit_msg" | grep -oE '^(build|ci|feat|fix|perf|refactor|style|docs|test|chore|revert|workflow|wip|security)' )
 
 if [ -z "$type" ]; then
     echo "❌ Invalid commit type!"
@@ -38,18 +39,13 @@ if [ -z "$type" ]; then
     echo "• chore 🔧"
     echo "• revert ⏪"
     echo "• workflow 📋"
+    echo "• wip ⏳"
     echo "• security 🔒"
     echo ""
     echo "Expected format: <type>(<scope>): <subject>"
     echo "Example: feat(auth): add email login"
     exit 1
 fi
- 
-# subjet=$(echo "$commit_msg" | cut -d ':' -f2- | xargs)
-# if [ ${#subjet} -gt 50 ]; then
-#     echo "❌ Commit subject is too long (max 50 characters)"
-#     exit 1
-# fi
 
 emoji_code=$(get_emoji_code "$type")
 if [ -z "$(echo "$emoji_code")" ]; then
