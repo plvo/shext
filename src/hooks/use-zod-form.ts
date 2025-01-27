@@ -1,11 +1,11 @@
 'use client';
 
-import { z, ZodObject, type ZodRawShape } from 'zod';
 import UseZodShape from './use-zod-shape.js';
+import { z, type ZodObject, type ZodRawShape } from 'zod';
 import { useForm, type DefaultValues } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 
-export default function useFormZod<T extends ZodObject<ZodRawShape>, U extends Record<keyof ZodRawShape, unknown>>(
+export default function useZodForm<T extends ZodObject<ZodRawShape>, U extends Record<keyof ZodRawShape, unknown>>(
   zodSchema: T,
   data?: U,
 ) {
