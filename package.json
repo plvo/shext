@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shext/next-utils"
+    "url": "git+https://github.com/shext/shext"
   },
   "type": "module",
   "main": "./dist/index.js",
@@ -27,12 +27,26 @@
   "files": [
     "dist"
   ],
+  "scripts": {
+    "format": "prettier --write .",
+    "clean": "rimraf dist/",
+    "build": "pnpm run clean && tsc",
+    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
+    "test": "vitest run",
+    "dev": "vitest",
+    "ci": "pnpm run format && pnpm run build && pnpm run check-exports && pnpm run test",
+    "prepublishOnly": "pnpm run ci",
+    "release": "release-it",
+    "prepare": "husky"
+  },
   "devDependencies": {
     "@arethetypeswrong/cli": "^0.17.3",
     "@types/node": "^20.0.0",
     "@types/react": "^18.0.0",
+    "auto-changelog": "^2.5.0",
     "husky": "^9.1.7",
     "prettier": "^3.4.2",
+    "release-it": "^18.1.2",
     "rimraf": "^6.0.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.3",
@@ -49,15 +63,27 @@
     "react-dom": "^18.0.0",
     "typescript": "^5.0.0"
   },
-  "scripts": {
-    "format": "prettier --write .",
-    "clean": "rimraf dist/",
-    "build": "pnpm run clean && tsc",
-    "check-exports": "attw --pack . --ignore-rules=cjs-resolves-to-esm",
-    "test": "vitest run",
-    "dev": "vitest",
-    "ci": "pnpm run format && pnpm run build && pnpm run check-exports && pnpm run test",
-    "prepublishOnly": "pnpm run ci",
-    "prepare": "husky"
+  "release-it": {
+    "git": {
+      "changelog": "git log --pretty=format:\"* %s (%h)\" ${from}...${to}",
+      "requireCleanWorkingDir": true,
+      "requireUpstream": true,
+      "commit": true,
+      "commitMessage": "chore: release v${version}",
+      "tag": true,
+      "tagName": "v${version}",
+      "push": true,
+      "pushArgs": [
+        "--follow-tags"
+      ]
+    },
+    "npm": {
+      "publish": true
+    },
+    "hooks": {
+      "before:init": [],
+      "before:bump": "npx auto-changelog --stdout --commit-limit false --unreleased --template keepachangelog > CHANGELOG.md",
+      "after:release": "echo Successfully released ${name} v${version}"
+    }
   }
 }
