@@ -1,25 +1,5 @@
 #!/bin/sh
 
-get_emoji_code() {
-    case "$1" in
-        "build")    echo ":building_construction:" ;;
-        "ci")       echo ":construction_worker:" ;;
-        "feat")     echo ":sparkles:" ;;
-        "fix")      echo ":bug:" ;;
-        "perf")     echo ":zap:" ;;
-        "refactor") echo ":recycle:" ;;
-        "style")    echo ":lipstick:" ;;
-        "docs")     echo ":memo:" ;;
-        "test")     echo ":test_tube:" ;;
-        "chore")    echo ":wrench:" ;;
-        "revert")   echo ":rewind:" ;;
-        "workflow") echo ":clipboard:" ;;
-        "wip")      echo ":hourglass:" ;;
-        "security") echo ":lock:" ;;
-        *)          echo "" ;;
-    esac
-}
-
 commit_msg=$(cat "$1")
 
 type=$(echo "$commit_msg" | grep -oE '^(build|ci|feat|fix|perf|refactor|style|docs|test|chore|revert|workflow|wip|security)' )
@@ -47,14 +27,6 @@ if [ -z "$type" ]; then
     exit 1
 fi
 
-emoji_code=$(get_emoji_code "$type")
-if [ -z "$(echo "$emoji_code")" ]; then
-    echo "$commit_msg" > "$1"
-    exit 0
-fi
-
-echo "$emoji_code $commit_msg" > "$1"
-
-echo "✅ Commit message is valid! added emoji"
+echo "✅ Commit message is valid!"
 
 exit 0

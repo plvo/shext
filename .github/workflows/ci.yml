@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: pnpm-setup
+      - name: Pnpm Setup
         uses: pnpm/action-setup@v2
         with:
           version: 9.4.0
@@ -27,3 +27,25 @@ jobs:
 
       - name: Run CI
         run: pnpm run ci
+  release:
+    needs: ci
+    if: ${{github.repository_owner == 'plvo'}}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Pnpm Setup
+        uses: pnpm/action-setup@v2
+        with:
+          version: 9.4.0
+
+      - name: Install Dependencies
+        run: pnpm install
+
+      - name: Run Semantic Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_ACCESS_TOKEN }}
+        run: npx semantic-release
