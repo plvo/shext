@@ -1,3 +1,3 @@
-import * as providers from './providers.js';
+import type { ComponentAndSubComponents, ComponentsKey, CustomComponents, SubComponentsMap } from './providers.js';
 
-export { providers };
+export type { ComponentAndSubComponents, ComponentsKey, CustomComponents, SubComponentsMap };
