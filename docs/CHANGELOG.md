@@ -1,3 +1,13 @@
+# [0.3.0](https://github.com/plvo/shext/compare/v0.2.0...v0.3.0) (2025-05-09)
+
+### Bug Fixes
+
+- barrel files import ([3e0b1ec](https://github.com/plvo/shext/commit/3e0b1ecbfd3a346402c93923dffea46c252ec7cc))
+
+### Features
+
+- **useShextForm:** add default value ([1484372](https://github.com/plvo/shext/commit/14843722bb34a21a9deb5c23407c9d1515210ee1))
+
 # [0.2.0](https://github.com/plvo/shext/compare/v0.1.2...v0.2.0) (2025-01-28)
 
 ### Bug Fixes

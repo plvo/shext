@@ -1,6 +1,6 @@
 {
   "name": "shext",
-  "version": "0.2.1",
+  "version": "0.3.0",
   "author": "plvo <plvoo@proton.me>",
   "license": "MIT",
   "description": "⚡ A collection of utility functions and components to speed up Next.js development",
