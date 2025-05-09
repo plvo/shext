@@ -1,4 +1,4 @@
-export const getChangedFields = <T extends Record<string, any>, U extends Partial<T>>(
+export const getChangedFields = <T extends Record<string, unknown>, U extends Partial<T>>(
   oldObject: T,
   newObject: U,
 ): Partial<T> => {

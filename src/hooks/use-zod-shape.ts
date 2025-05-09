@@ -1,6 +1,6 @@
 'use client';
 
-import { ZodObject, type ZodRawShape } from 'zod';
+import type { ZodObject, ZodRawShape } from 'zod';
 
 export default function UseZodShape<T extends ZodObject<ZodRawShape>, U extends Record<keyof ZodRawShape, unknown>>(
   zodSchema: T,
