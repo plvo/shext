@@ -1,3 +1,3 @@
 # shext
 
-A collection of utility functions and components to speed up next.js development
+Moved to [github.com/plvo/shuip](https://github.com/plvo/shuip)
